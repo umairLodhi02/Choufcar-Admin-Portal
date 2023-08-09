@@ -36,6 +36,7 @@ import moment from "moment";
 import { hideRecipeError, toggleModal } from "../../slices/dashboard/reducer";
 import UpdateStatusModal from "./UpdateStatusModal";
 import ResponseModal from "./ResponseModal";
+import SwiperSlider from "./SwipeSlider";
 
 const ACTIVE_LIST_VALUES = {
   APPROVED: "APPROVED",
@@ -61,6 +62,8 @@ const Dashboard = () => {
 
   const [receiptStatus, setReceiptStatus] = useState({});
 
+  const [swiperSliderModal, setSwiperSliderModal] = useState(false);
+  const [imagesForSlider, setImagesForSlider] = useState([]);
   const columns = [
     // {
     //   name: (
@@ -113,6 +116,23 @@ const Dashboard = () => {
       name: <span className="font-weight-bold fs-13">Create Date</span>,
       selector: (row) => moment(row.createdDate).format("YYYY-MM-DD"),
       sortable: true,
+    },
+    {
+      name: <span className="font-weight-bold fs-13">Reciept Image</span>,
+      selector: (row) => {
+        return (
+          <Button
+            color="link"
+            onClick={() => {
+              setSwiperSliderModal(true);
+              setImagesForSlider(row?.images || []);
+            }}
+            className="p-0"
+          >
+            View receipts
+          </Button>
+        );
+      },
     },
     {
       name: <span className="font-weight-bold fs-13">Status</span>,
@@ -186,6 +206,9 @@ const Dashboard = () => {
     setUpdateStatusModalVisible(!updateStatusModalVisible);
   };
 
+  const toggleSwiperStatusModal = (val) => {
+    setSwiperSliderModal(val);
+  };
   useEffect(() => {
     dispatch(getReceiptData());
   }, []);
@@ -317,6 +340,12 @@ const Dashboard = () => {
         toggleUpdateStatusVisible={toggleUpdateStatusVisible}
         receiptStatus={receiptStatus}
         selectedItem={selectedItem}
+      />
+
+      <SwiperSlider
+        swiperSliderModal={swiperSliderModal}
+        toggleSwiperModal={toggleSwiperStatusModal}
+        imagesForSlider={imagesForSlider}
       />
     </>
   );
