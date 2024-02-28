@@ -68,7 +68,7 @@ const Login = (props) => {
     }
   }, [dispatch, errorMsg]);
 
-  document.title = "SignIn | Roufee";
+  document.title = "SignIn | Choufcar";
 
   return (
     <React.Fragment>
@@ -98,7 +98,7 @@ const Login = (props) => {
                     <div className="text-center mt-2">
                       <h5 className="text-primary">Welcome Back !</h5>
                       <p className="text-muted">
-                        Sign in to continue to Roufee.
+                        Sign in to continue to Choufcar.
                       </p>
                     </div>
                     {error ? <Alert color="danger"> {error} </Alert> : null}

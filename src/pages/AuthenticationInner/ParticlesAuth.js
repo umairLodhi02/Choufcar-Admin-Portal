@@ -14,7 +14,7 @@ const ParticlesAuth = ({ children }) => {
               <div className="col-lg-12">
                 <div className="text-center">
                   <p className="mb-0 text-muted">
-                    &copy; {new Date().getFullYear()} Roufee. Crafted with{" "}
+                    &copy; {new Date().getFullYear()} Choufcar. Crafted with{" "}
                     <i className="mdi mdi-heart text-danger"></i> by Umair
                     Nadeem
                   </p>
